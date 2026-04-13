@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Healthcare App</title>
+<style>
+body {
+  font-family: Arial;
+  padding: 20px;
+}
+input, select, button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+}
+button {
+  background: green;
+  color: white;
+}
+a {
+  display: block;
+  margin-bottom: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Smart Healthcare System</h1>
+
+<a href="dashboard.html">Go to Dashboard</a>
+
+<h3>Add Patient</h3>
+
+<input type="text" id="name" placeholder="Patient Name">
+<input type="number" id="age" placeholder="Age">
+
+<select id="gender">
+<option value="">Select Gender</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+</select>
+
+<select id="category">
+<option value="">Category</option>
+<option value="Pregnant">Pregnant</option>
+<option value="Child">Child</option>
+<option value="Elderly">Elderly</option>
+</select>
+
+<select id="vaccine">
+<option value="">Vaccination</option>
+<option value="Vaccinated">Vaccinated</option>
+<option value="Not Vaccinated">Not Vaccinated</option>
+</select>
+
+<button onclick="addPatient()">Add Patient</button>
+
+<script>
+function addPatient() {
+  let name = document.getElementById("name").value;
+  let age = document.getElementById("age").value;
+  let gender = document.getElementById("gender").value;
+  let category = document.getElementById("category").value;
+  let vaccine = document.getElementById("vaccine").value;
+
+  if (!name || !age || !gender || !category || !vaccine) {
+    alert("Fill all fields");
+    return;
+  }
+
+  let patients = JSON.parse(localStorage.getItem("patients")) || [];
+
+  patients.push({name, age, gender, category, vaccine});
+
+  localStorage.setItem("patients", JSON.stringify(patients));
+
+  alert("Patient added successfully!");
+}
+</script>
+
+</body>
+</html>
